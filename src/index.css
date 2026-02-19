@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== DESIGN SYSTEM — Themba Macheke Portfolio ===== */
+/* All colors are HSL */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    /* Core backgrounds */
+    --background: 220 60% 3%;
+    --foreground: 210 40% 96%;
+
+    --card: 220 40% 6%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 220 40% 6%;
+    --popover-foreground: 210 40% 96%;
+
+    /* Neon cyan primary */
+    --primary: 185 100% 50%;
+    --primary-foreground: 220 60% 3%;
+
+    --secondary: 220 30% 12%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 220 30% 10%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 210 100% 60%;
+    --accent-foreground: 220 60% 3%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 30% 14%;
+    --input: 220 30% 12%;
+    --ring: 185 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom portfolio tokens */
+    --neon-cyan: 185 100% 50%;
+    --neon-blue: 210 100% 60%;
+    --neon-green: 142 76% 45%;
+    --dark-surface: 220 40% 6%;
+    --darker-surface: 220 50% 4%;
+    --glass: 220 40% 8%;
+
+    /* Glow effects */
+    --glow-cyan: 0 0 20px hsl(185 100% 50% / 0.4), 0 0 40px hsl(185 100% 50% / 0.2);
+    --glow-blue: 0 0 20px hsl(210 100% 60% / 0.4), 0 0 40px hsl(210 100% 60% / 0.2);
+    --glow-card: 0 4px 32px hsl(185 100% 50% / 0.08), 0 1px 8px hsl(0 0% 0% / 0.5);
+
+    /* Sidebar */
+    --sidebar-background: 220 50% 4%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 185 100% 50%;
+    --sidebar-primary-foreground: 220 60% 3%;
+    --sidebar-accent: 220 30% 12%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 220 30% 14%;
+    --sidebar-ring: 185 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.4);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.7);
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .text-neon {
+    color: hsl(var(--neon-cyan));
+  }
+
+  .text-neon-blue {
+    color: hsl(var(--neon-blue));
+  }
+
+  .glow-text {
+    text-shadow: var(--glow-cyan);
+  }
+
+  .glow-box {
+    box-shadow: var(--glow-card);
+  }
+
+  .glass-card {
+    background: hsl(var(--glass) / 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--primary) / 0.12);
+  }
+
+  .neon-border {
+    border: 1px solid hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 12px hsl(var(--primary) / 0.1), inset 0 0 12px hsl(var(--primary) / 0.03);
+  }
+
+  .neon-border:hover {
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.2), inset 0 0 20px hsl(var(--primary) / 0.05);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-blue)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-bg-alt {
+    background: hsl(var(--dark-surface));
+  }
+
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow-pulse {
+    from { box-shadow: 0 0 10px hsl(var(--primary) / 0.3); }
+    to { box-shadow: 0 0 25px hsl(var(--primary) / 0.6), 0 0 50px hsl(var(--primary) / 0.2); }
+  }
+
+  .skill-badge {
+    background: hsl(var(--dark-surface));
+    border: 1px solid hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+    transition: all 0.3s ease;
+  }
+
+  .skill-badge:hover {
+    border-color: hsl(var(--primary) / 0.6);
+    color: hsl(var(--primary));
+    box-shadow: 0 0 12px hsl(var(--primary) / 0.25);
+    transform: translateY(-2px);
+  }
+}
